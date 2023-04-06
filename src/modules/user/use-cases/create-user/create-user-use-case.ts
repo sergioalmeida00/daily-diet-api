@@ -1,3 +1,4 @@
+import { hash } from 'bcryptjs'
 import { UserDTO } from '../../dtos/user-dto'
 import { IUserRepository } from '../../repositories/IUser-repository'
 import { randomUUID } from 'node:crypto'
@@ -14,7 +15,14 @@ export class CreateUserUseCase {
       throw new Error('Email already exists')
     }
 
-    const user = await this.userRepository.create({ id, name, email, password })
+    const passwordHash = await hash(password, 8)
+
+    const user = await this.userRepository.create({
+      id,
+      name,
+      email,
+      password: passwordHash,
+    })
 
     return user
   }
