@@ -16,4 +16,10 @@ export class UserRepositoryInMemory implements IUserRepository {
 
     return userByEmail
   }
+
+  async findById(id: string): Promise<UserDTO | undefined> {
+    const resultUserById = this.users.find((user) => user.id === id)
+
+    return resultUserById
+  }
 }
