@@ -4,6 +4,7 @@ interface IFoodRepository {
   create(data: FoodDto): Promise<FoodDto>
   update(data: FoodDto): Promise<FoodDto>
   findAll(userId: string): Promise<FoodDto[] | undefined>
+  deleteById(data: Pick<FoodDto, 'id' | 'userId'>): Promise<boolean>
 }
 
 export { IFoodRepository }

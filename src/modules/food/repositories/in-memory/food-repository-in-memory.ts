@@ -59,4 +59,20 @@ export class FoodRepositoryInMemory implements IFoodRepository {
 
     return resultFoods
   }
+
+  async deleteById({
+    id,
+    userId,
+  }: Pick<FoodDto, 'id' | 'userId'>): Promise<boolean> {
+    const rowIndex = this.foods.findIndex(
+      (food) => food.id === id && food.userId === userId,
+    )
+
+    if (rowIndex > -1) {
+      this.foods.splice(rowIndex, 1)
+      return true
+    }
+
+    return false
+  }
 }
