@@ -86,41 +86,4 @@ export class FoodRepositoryInMemory implements IFoodRepository {
 
     return foodResult
   }
-
-  async metricsFood({
-    userId,
-  }: Pick<FoodDto, 'userId'>): Promise<MetricsFoodDto> {
-    let sequence = 0
-    const metricsFood = this.foods
-      .filter((food) => food.userId === userId)
-      .reduce(
-        (
-          { amountFood, amountFoodDiet, amountFoodNotDiet, maxSequence },
-          operation,
-        ) => {
-          if (operation.diet) {
-            sequence++
-            amountFoodDiet++
-
-            if (sequence > maxSequence) {
-              maxSequence = sequence
-            }
-          } else {
-            sequence = 0
-            amountFoodNotDiet++
-          }
-
-          amountFood++
-
-          return { amountFood, amountFoodDiet, amountFoodNotDiet, maxSequence }
-        },
-        {
-          amountFood: 0,
-          amountFoodDiet: 0,
-          amountFoodNotDiet: 0,
-          maxSequence: 0,
-        },
-      )
-    return metricsFood
-  }
 }

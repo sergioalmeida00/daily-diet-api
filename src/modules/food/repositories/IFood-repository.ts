@@ -9,7 +9,6 @@ interface IFoodRepository {
     userId,
   }: Pick<FoodDto, 'id' | 'userId'>): Promise<FoodDto | undefined>
   deleteById(data: Pick<FoodDto, 'id' | 'userId'>): Promise<boolean>
-  metricsFood({ userId }: Pick<FoodDto, 'userId'>): Promise<MetricsFoodDto>
 }
 
 export { IFoodRepository }

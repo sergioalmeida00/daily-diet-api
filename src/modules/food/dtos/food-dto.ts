@@ -12,6 +12,8 @@ interface MetricsFoodDto {
   amountFood: number
   amountFoodDiet: number
   amountFoodNotDiet: number
+  percentageDiet: number
+  percentageNotDiet: number
   maxSequence: number
 }
 
