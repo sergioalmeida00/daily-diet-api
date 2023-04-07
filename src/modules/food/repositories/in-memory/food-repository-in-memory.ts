@@ -53,4 +53,10 @@ export class FoodRepositoryInMemory implements IFoodRepository {
 
     return this.foods[foodIndex]
   }
+
+  async findAll(userId: string): Promise<FoodDto[]> {
+    const resultFoods = this.foods.filter((food) => food.userId === userId)
+
+    return resultFoods
+  }
 }

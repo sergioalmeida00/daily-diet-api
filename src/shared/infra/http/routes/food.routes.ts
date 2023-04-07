@@ -6,6 +6,8 @@ import { CreateFoodUseCase } from '../../../../modules/food/use-cases/create-foo
 import { CreateFoodController } from '../../../../modules/food/use-cases/create-food/create-food-controller'
 import { UpdateFoodUseCase } from '../../../../modules/food/use-cases/update-food/update-food-use-case'
 import { UpdateFoodController } from '../../../../modules/food/use-cases/update-food/update-food-controller'
+import { ListAllFoodsUseCase } from '../../../../modules/food/use-cases/list-all-foods/list-all-foods--use-case'
+import { ListAllFoodsController } from '../../../../modules/food/use-cases/list-all-foods/list-all-foods-controller'
 
 const routeFood = Router()
 
@@ -20,6 +22,10 @@ const createFoodController = new CreateFoodController(createFoodUseCase)
 const updateFoodUseCase = new UpdateFoodUseCase(foodRepositoryInMemory)
 const updateFoodController = new UpdateFoodController(updateFoodUseCase)
 
+// LIST ALL FOODS
+const listAllFoodsUseCase = new ListAllFoodsUseCase(foodRepositoryInMemory)
+const listAllFoodsController = new ListAllFoodsController(listAllFoodsUseCase)
+
 // ENDPOINTS
 routeFood.post('/create', ensureAuth, (request, response) => {
   createFoodController.handle(request, response)
@@ -27,6 +33,10 @@ routeFood.post('/create', ensureAuth, (request, response) => {
 
 routeFood.put('/update/:id', ensureAuth, (request, response) => {
   updateFoodController.handle(request, response)
+})
+
+routeFood.get('/', ensureAuth, (request, response) => {
+  listAllFoodsController.handle(request, response)
 })
 
 export { routeFood }
