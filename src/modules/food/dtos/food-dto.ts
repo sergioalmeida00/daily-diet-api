@@ -12,6 +12,7 @@ interface MetricsFoodDto {
   amountFood: number
   amountFoodDiet: number
   amountFoodNotDiet: number
+  maxSequence: number
 }
 
 export { FoodDto, MetricsFoodDto }
