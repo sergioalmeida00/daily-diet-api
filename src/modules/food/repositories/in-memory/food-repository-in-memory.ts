@@ -29,4 +29,28 @@ export class FoodRepositoryInMemory implements IFoodRepository {
 
     return foodResult
   }
+
+  async update({
+    id,
+    name,
+    description,
+    date,
+    time,
+    diet,
+    userId,
+  }: FoodDto): Promise<FoodDto> {
+    const foodIndex = this.foods.findIndex((food) => food.id === id)
+
+    if (foodIndex > -1) {
+      if (this.foods[foodIndex].userId === userId) {
+        const food = this.foods[foodIndex]
+        this.foods[foodIndex] = {
+          ...food,
+          ...{ name, description, date, time, diet },
+        }
+      }
+    }
+
+    return this.foods[foodIndex]
+  }
 }

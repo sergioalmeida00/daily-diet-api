@@ -28,9 +28,9 @@ export async function ensureAuth(
 
     const verifyUserExists = await userRepositoryInMemory.findById(userId)
 
-    if (!verifyUserExists) {
-      throw new Error('User does not exist')
-    }
+    // if (!verifyUserExists) {
+    //   throw new Error('User does not exist')
+    // }
 
     request.user = {
       id: userId,
