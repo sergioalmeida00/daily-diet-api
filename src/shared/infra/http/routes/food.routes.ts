@@ -10,6 +10,8 @@ import { ListAllFoodsUseCase } from '../../../../modules/food/use-cases/list-all
 import { ListAllFoodsController } from '../../../../modules/food/use-cases/list-all-foods/list-all-foods-controller'
 import { DeleteFoodUseCase } from '../../../../modules/food/use-cases/delete-food/delete-food-use-case'
 import { DeleteFoodController } from '../../../../modules/food/use-cases/delete-food/delete-food-controller'
+import { FindIdFoodUseCase } from '../../../../modules/food/use-cases/find-id-food/find-id-food-use-case'
+import { FindIdFoodController } from '../../../../modules/food/use-cases/find-id-food/find-id-food-controller'
 
 const routeFood = Router()
 
@@ -32,6 +34,10 @@ const listAllFoodsController = new ListAllFoodsController(listAllFoodsUseCase)
 const deleteFoodUseCase = new DeleteFoodUseCase(foodRepositoryInMemory)
 const deleteFoodController = new DeleteFoodController(deleteFoodUseCase)
 
+// FIND FOOD BY ID
+const findIdFoodUseCase = new FindIdFoodUseCase(foodRepositoryInMemory)
+const findIdFoodController = new FindIdFoodController(findIdFoodUseCase)
+
 // ENDPOINTS
 routeFood.post('/create', ensureAuth, (request, response) => {
   createFoodController.handle(request, response)
@@ -47,6 +53,10 @@ routeFood.get('/', ensureAuth, (request, response) => {
 
 routeFood.delete('/:id', ensureAuth, (request, response) => {
   deleteFoodController.handle(request, response)
+})
+
+routeFood.get('/:id', ensureAuth, (request, response) => {
+  findIdFoodController.handle(request, response)
 })
 
 export { routeFood }

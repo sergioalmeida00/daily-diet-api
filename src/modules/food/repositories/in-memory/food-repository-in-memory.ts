@@ -75,4 +75,15 @@ export class FoodRepositoryInMemory implements IFoodRepository {
 
     return false
   }
+
+  async findById({
+    id,
+    userId,
+  }: Pick<FoodDto, 'id' | 'userId'>): Promise<FoodDto | undefined> {
+    const foodResult = this.foods.find(
+      (food) => food.id === id && food.userId === userId,
+    )
+
+    return foodResult
+  }
 }
