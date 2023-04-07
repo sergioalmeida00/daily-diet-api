@@ -8,4 +8,10 @@ interface FoodDto {
   userId: string
 }
 
-export { FoodDto }
+interface MetricsFoodDto {
+  amountFood: number
+  amountFoodDiet: number
+  amountFoodNotDiet: number
+}
+
+export { FoodDto, MetricsFoodDto }

@@ -12,6 +12,8 @@ import { DeleteFoodUseCase } from '../../../../modules/food/use-cases/delete-foo
 import { DeleteFoodController } from '../../../../modules/food/use-cases/delete-food/delete-food-controller'
 import { FindIdFoodUseCase } from '../../../../modules/food/use-cases/find-id-food/find-id-food-use-case'
 import { FindIdFoodController } from '../../../../modules/food/use-cases/find-id-food/find-id-food-controller'
+import { MetricsFoodUseCase } from '../../../../modules/food/use-cases/metrics-food/metrics-food-use-case'
+import { MetricsFoodController } from '../../../../modules/food/use-cases/metrics-food/metrics-food-controller'
 
 const routeFood = Router()
 
@@ -38,6 +40,10 @@ const deleteFoodController = new DeleteFoodController(deleteFoodUseCase)
 const findIdFoodUseCase = new FindIdFoodUseCase(foodRepositoryInMemory)
 const findIdFoodController = new FindIdFoodController(findIdFoodUseCase)
 
+// METRICS FOOD USER
+const metricsFoodUseCase = new MetricsFoodUseCase(foodRepositoryInMemory)
+const metricsFoodController = new MetricsFoodController(metricsFoodUseCase)
+
 // ENDPOINTS
 routeFood.post('/create', ensureAuth, (request, response) => {
   createFoodController.handle(request, response)
@@ -57,6 +63,10 @@ routeFood.delete('/:id', ensureAuth, (request, response) => {
 
 routeFood.get('/:id', ensureAuth, (request, response) => {
   findIdFoodController.handle(request, response)
+})
+
+routeFood.get('/metrics/food', ensureAuth, (request, response) => {
+  metricsFoodController.handle(request, response)
 })
 
 export { routeFood }

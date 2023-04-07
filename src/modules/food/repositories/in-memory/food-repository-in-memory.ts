@@ -1,4 +1,4 @@
-import { FoodDto } from '../../dtos/food-dto'
+import { FoodDto, MetricsFoodDto } from '../../dtos/food-dto'
 import { IFoodRepository } from '../IFood-repository'
 
 export class FoodRepositoryInMemory implements IFoodRepository {
@@ -85,5 +85,27 @@ export class FoodRepositoryInMemory implements IFoodRepository {
     )
 
     return foodResult
+  }
+
+  async metricsFood({
+    userId,
+  }: Pick<FoodDto, 'userId'>): Promise<MetricsFoodDto> {
+    const metricsFood = this.foods
+      .filter((food) => food.userId === userId)
+      .reduce(
+        ({ amountFood, amountFoodDiet, amountFoodNotDiet }, operation) => {
+          if (operation.diet) {
+            amountFoodDiet += 1
+          } else {
+            amountFoodNotDiet += 1
+          }
+
+          amountFood += 1
+
+          return { amountFood, amountFoodDiet, amountFoodNotDiet }
+        },
+        { amountFood: 0, amountFoodDiet: 0, amountFoodNotDiet: 0 },
+      )
+    return metricsFood
   }
 }

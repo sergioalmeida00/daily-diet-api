@@ -1,4 +1,4 @@
-import { FoodDto } from '../dtos/food-dto'
+import { FoodDto, MetricsFoodDto } from '../dtos/food-dto'
 
 interface IFoodRepository {
   create(data: FoodDto): Promise<FoodDto>
@@ -9,6 +9,7 @@ interface IFoodRepository {
     userId,
   }: Pick<FoodDto, 'id' | 'userId'>): Promise<FoodDto | undefined>
   deleteById(data: Pick<FoodDto, 'id' | 'userId'>): Promise<boolean>
+  metricsFood({ userId }: Pick<FoodDto, 'userId'>): Promise<MetricsFoodDto>
 }
 
 export { IFoodRepository }
