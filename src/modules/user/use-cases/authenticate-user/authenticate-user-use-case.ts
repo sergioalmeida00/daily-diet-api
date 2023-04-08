@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { sign } from 'jsonwebtoken'
 import { UserDTO } from '../../dtos/user-dto'
 import { IUserRepository } from '../../repositories/IUser-repository'
@@ -18,13 +19,12 @@ export class AuthenticateUserUseCase {
     if (!passwordMath) {
       throw new Error('Incorrect Email/Password')
     }
-
     const token = sign(
       { id: user.id, email: user.email },
       `${process.env.SECRET_AUTH}`,
       { expiresIn: `${process.env.EXPIRE_IN_AUTH}`, subject: user.id },
     )
 
-    return token
+    return { token }
   }
 }
