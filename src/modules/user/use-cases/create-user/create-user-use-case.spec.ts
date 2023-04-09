@@ -1,4 +1,4 @@
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { UserRepositoryInMemory } from '../../repositories/in-memory/user-repository-in-memory'
 import { CreateUserUseCase } from './create-user-use-case'
 

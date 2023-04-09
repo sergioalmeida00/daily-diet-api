@@ -2,7 +2,7 @@ interface FoodDto {
   id: string
   name: string
   description: string
-  date: Date
+  date: string
   time: string
   diet: boolean
   userId: string
