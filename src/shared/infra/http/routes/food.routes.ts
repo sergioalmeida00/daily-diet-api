@@ -57,7 +57,7 @@ routeFood.get('/', ensureAuth, (request, response) => {
   listAllFoodsController.handle(request, response)
 })
 
-routeFood.delete('/:id', ensureAuth, (request, response) => {
+routeFood.delete('/delete/:id', ensureAuth, (request, response) => {
   deleteFoodController.handle(request, response)
 })
 
@@ -65,7 +65,7 @@ routeFood.get('/:id', ensureAuth, (request, response) => {
   findIdFoodController.handle(request, response)
 })
 
-routeFood.get('/metrics/food', ensureAuth, (request, response) => {
+routeFood.get('/metrics', ensureAuth, (request, response) => {
   metricsFoodController.handle(request, response)
 })
 
