@@ -73,4 +73,3 @@ Nessa API, foi aplicado alguns conceitos:
         ```
         
 
-![Untitled](Daily%20Diet%20-%20API%2008abac65fc254dfe80631cbb066630cd/Untitled.png)
